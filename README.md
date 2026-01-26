@@ -1,0 +1,2 @@
+# inetrnet-store
+WDAI project
