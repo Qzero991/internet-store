@@ -6,7 +6,9 @@ async function connToDatabase() {
         await sequelize.authenticate();
         console.log('DB connected');
 
-        await sequelize.sync();
+        await sequelize.query('PRAGMA foreign_keys = OFF;');
+        await sequelize.sync({ alter: true });
+        await sequelize.query('PRAGMA foreign_keys = ON;');
         console.log('Tables created / updated');
 
         await createDefaults()

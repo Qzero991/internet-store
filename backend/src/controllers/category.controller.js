@@ -23,18 +23,18 @@ module.exports = {
 
     async create(req, res) {
         try {
-            const { name, description } = req.body;
+            const { name, description, image_url } = req.body;
             if (!name) return res.status(400).json({ error: 'Name is required' });
 
-            const category = await Category.create({ name, description });
+            const category = await Category.create({ name, description, image_url });
             res.status(201).json(category);
         } catch (err) { handleError(res, err, 'CREATE_CATEGORY'); }
     },
 
     async update(req, res) {
         try {
-            const { name, description } = req.body;
-            const [updated] = await Category.update({ name, description }, {
+            const { name, description, image_url } = req.body;
+            const [updated] = await Category.update({ name, description, image_url }, {
                 where: { category_id: req.params.id }
             });
             if (!updated) return res.status(404).json({ error: 'Category not found' });
