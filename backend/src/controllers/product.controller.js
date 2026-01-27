@@ -25,12 +25,12 @@ module.exports = {
 
     async create(req, res) {
         try {
-            const { name, description, price, stock_quantity, category_id } = req.body;
+            const { name, description, price, stock_quantity, category_id, image_url } = req.body;
             if (!name || !price || !category_id) {
                 return res.status(400).json({ error: 'Missing name, price or category_id' });
             }
 
-            const product = await Product.create({ name, description, price, stock_quantity, category_id });
+            const product = await Product.create({ name, description, price, stock_quantity, category_id, image_url });
             res.status(201).json(product);
         } catch (err) { handleError(res, err, 'CREATE_PRODUCT'); }
     },
