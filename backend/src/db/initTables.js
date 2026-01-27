@@ -1,4 +1,4 @@
-const sequelize = require('../initConnection');
+const sequelize = require('./initConnection');
 
 const Category = require('./tables/Category');
 const User = require('./tables/User');
@@ -8,7 +8,6 @@ const Order = require('./tables/Order');
 const OrderProduct = require('./tables/OrderProduct');
 const PaymentMethod = require('./tables/PaymentMethod');
 const Review = require('./tables/Review');
-const Image = require('./tables/Image');
 
 // Category → Products
 Category.hasMany(Product, { foreignKey: 'category_id' });
@@ -40,10 +39,6 @@ Product.belongsToMany(Order, {
 User.hasMany(Review, { foreignKey: 'user_id' });
 Product.hasMany(Review, { foreignKey: 'product_id' });
 
-// Images
-Product.hasMany(Image, { foreignKey: 'product_id' });
-Image.belongsTo(Product, { foreignKey: 'product_id' });
-
 // Payment methods
 User.hasMany(PaymentMethod, { foreignKey: 'user_id' });
 PaymentMethod.belongsTo(User, { foreignKey: 'user_id' });
@@ -57,6 +52,5 @@ module.exports = {
   Order,
   OrderProduct,
   PaymentMethod,
-  Review,
-  Image
+  Review
 };
