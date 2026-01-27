@@ -18,7 +18,27 @@ async function createDefaults() {
         });
 
         await Category.findOrCreate({
-            where: { name: 'phones' },
+            where: { name: 'Clothes' },
+            defaults: {
+                description: 'Rock shoes, pants, T-shirts',
+                image_url: `${process.env.BACKEND_SERVER_URL}/pictures/clothes.png`
+            }
+        });
+
+        await Category.findOrCreate({
+            where: { name: 'Accessories' },
+            defaults: {
+                description: 'Chalk bags, backpacks, bags',
+                image_url: `${process.env.BACKEND_SERVER_URL}/pictures/equipment.png`
+            }
+        });
+
+        await Category.findOrCreate({
+            where: { name: 'Equipment' },
+            defaults: {
+                description: 'Ropes, carabiners, belays, chalk',
+                image_url: `${process.env.BACKEND_SERVER_URL}/pictures/accessories.png`
+            }
         });
 
 

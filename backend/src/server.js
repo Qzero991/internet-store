@@ -4,6 +4,10 @@ const connToDatabase = require('./db/database')
 const routes = require('./routes');
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+app.use(
+  '/pictures',
+  express.static(path.join(__dirname, '..', 'pictures'))
+);
 
 app.use(express.json())
 
