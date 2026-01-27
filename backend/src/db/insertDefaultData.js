@@ -1,4 +1,4 @@
-const { User, Category } = require('./initTables')
+const { User, Category, Product } = require('./initTables')
 const SALT_ROUNDS = 10
 const bcrypt = require('bcrypt')
 const password = "12345"
@@ -17,11 +17,11 @@ async function createDefaults() {
             },
         });
 
-        await Category.findOrCreate({
+        const clothes = await Category.findOrCreate({
             where: { name: 'Clothes' },
             defaults: {
                 description: 'Rock shoes, pants, T-shirts',
-                image_url: `${process.env.BACKEND_SERVER_URL}/pictures/clothes.png`
+                image_url: `${process.env.BACKEND_SERVER_URL}/pictures/categories/clothes.png`
             }
         });
 
@@ -29,7 +29,7 @@ async function createDefaults() {
             where: { name: 'Accessories' },
             defaults: {
                 description: 'Chalk bags, backpacks, bags',
-                image_url: `${process.env.BACKEND_SERVER_URL}/pictures/equipment.png`
+                image_url: `${process.env.BACKEND_SERVER_URL}/pictures/categories/equipment.png`
             }
         });
 
@@ -37,10 +37,21 @@ async function createDefaults() {
             where: { name: 'Equipment' },
             defaults: {
                 description: 'Ropes, carabiners, belays, chalk',
-                image_url: `${process.env.BACKEND_SERVER_URL}/pictures/accessories.png`
+                image_url: `${process.env.BACKEND_SERVER_URL}/pictures/categories/accessories.png`
             }
         });
 
+        await Product.findOrCreate({
+            where: { name: 'Scarpa boot'},
+            defaults: {
+                description: 'Very good bouldering boot',
+                price: '230',
+                stock_quantity: '52',
+                category_id: clothes.category_id,
+                image_url: `${process.env.BACKEND_SERVER_URL}/pictures/products/scarpaBoot.png`
+
+            }
+        })
 
     } catch (err) { console.log(err) }
 }
