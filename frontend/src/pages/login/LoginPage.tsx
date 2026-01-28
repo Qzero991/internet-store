@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { Link } from "react-router-dom"; 
 import './LoginPage.css';
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
+    const { login } = useAuth();
     
     const [formData, setFormData] = useState({
         email: '',
@@ -85,9 +88,21 @@ const LoginPage: React.FC = () => {
                 throw new Error(data.error || 'Login failed');
             }
 
-            // For now, just log success and maybe redirect
-            // In a real app, you would store the token in Context/LocalStorage
             console.log('Login successful:', data);
+            
+            // Expected backend response: { token: "...", user: { ... } }
+            // If backend structure differs, adjust here. 
+            // Based on typical JWT flows, we expect a token.
+            // If your backend returns just token, we might need to decode it or fetch /me.
+            // For now assuming data contains token (or access_token) and user details or sub.
+
+            // Adapt this based on actual API response structure
+            const token = data.token || data.access_token;
+            // Decode token or use returned user object if available
+            // If backend doesn't return user object, we minimally need one.
+            const user = data.user || { email: formData.email, sub: 0 }; 
+
+            login(token, user);
             
             // Redirect to home or profile
             navigate('/');

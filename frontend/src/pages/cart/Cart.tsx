@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Trash2, Plus, Minus } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import ProductList from '../../components/ProductList/ProductList';
+import { useAuth } from '../../context/AuthContext';
 import './Cart.css';
 
 // Mock Cart Item Interface
@@ -13,6 +15,15 @@ interface CartItem {
 }
 
 const Cart: React.FC = () => {
+    const { isAuthenticated } = useAuth();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate('/login');
+        }
+    }, [isAuthenticated, navigate]);
+
     // Mock Data - In a real app this would come from Context/Redux/API
     const [cartItems, setCartItems] = useState<CartItem[]>([
         {

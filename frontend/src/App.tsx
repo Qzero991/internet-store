@@ -7,6 +7,8 @@ import ProductList from './components/ProductList/ProductList';
 import Cart from './pages/cart/Cart';
 import LoginPage from './pages/login/LoginPage';
 import SignUp from './pages/signup/SignUp';
+import SearchPage from './pages/search/SearchPage';
+import Profile from './pages/Profile/Profile';
 import './App.css';
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/profile" element={<Profile />} />
             {/* Add other routes here */}
           </Routes>
         </main>

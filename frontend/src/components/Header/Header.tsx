@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search, ShoppingCart, User, X } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 import './Header.css';
 
 const Header: React.FC = () => {
@@ -8,6 +9,7 @@ const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,9 +22,10 @@ const Header: React.FC = () => {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Searching for:', searchQuery);
-    setIsMobileSearchOpen(false);
-    // navigate(`/search?q=${searchQuery}`);
+    if (searchQuery.trim()) {
+      setIsMobileSearchOpen(false);
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
   };
 
   return (
@@ -64,7 +67,7 @@ const Header: React.FC = () => {
         <Link to="/cart" className="icon-button" aria-label="Cart">
           <ShoppingCart size={24} />
         </Link>
-        <Link to="/login" className="icon-button" aria-label="Login">
+        <Link to={isAuthenticated ? "/profile" : "/login"} className="icon-button" aria-label="Profile">
           <User size={24} />
         </Link>
       </div>
