@@ -2,6 +2,7 @@ const { User, Category, Product } = require('./initTables')
 const SALT_ROUNDS = 10
 const bcrypt = require('bcrypt')
 const password = "12345"
+const initProducts = require('./insertDefaultProducts')
 
 async function createDefaults() {
     try {
@@ -17,7 +18,7 @@ async function createDefaults() {
             },
         });
 
-        const clothes = await Category.findOrCreate({
+        await Category.findOrCreate({
             where: { name: 'Clothes' },
             defaults: {
                 description: 'Rock shoes, pants, T-shirts',
@@ -41,17 +42,7 @@ async function createDefaults() {
             }
         });
 
-        await Product.findOrCreate({
-            where: { name: 'Scarpa boot'},
-            defaults: {
-                description: 'Very good bouldering boot',
-                price: '230',
-                stock_quantity: '52',
-                category_id: clothes.category_id,
-                image_url: `${process.env.BACKEND_SERVER_URL}/pictures/products/scarpaBoot.png`
-
-            }
-        })
+        await initProducts()
 
     } catch (err) { console.log(err) }
 }

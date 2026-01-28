@@ -1,4 +1,3 @@
-const { ValidationError } = require('sequelize');
 const {
   Order,
   OrderProduct,

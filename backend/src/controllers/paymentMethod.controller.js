@@ -1,4 +1,3 @@
-const { ValidationError } = require('sequelize');
 const { PaymentMethod } = require('../db/initTables');
 const handleControllerError = require('../utils/handleError')
 module.exports = {
