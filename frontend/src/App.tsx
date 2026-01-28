@@ -4,6 +4,7 @@ import Footer from './components/Footer/Footer';
 import Hero from './pages/home/Hero/Hero';
 import CategoryList from './pages/home/Category_List/CategoryList';
 import ProductList from './components/ProductList/ProductList';
+import ProductPage from './pages/product/ProductPage';
 import Cart from './pages/cart/Cart';
 import LoginPage from './pages/login/LoginPage';
 import SignUp from './pages/signup/SignUp';
@@ -28,6 +29,7 @@ function App() {
               </>
             } />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/search" element={<SearchPage />} />

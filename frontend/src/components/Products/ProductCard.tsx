@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShoppingCart } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import './ProductCard.css';
 
 export interface Product {
@@ -18,13 +19,18 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
+    const navigate = useNavigate();
     const formattedPrice = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
     }).format(Number(product.price));
 
     return (
-        <div className="product-card">
+        <div 
+            className="product-card" 
+            onClick={() => navigate(`/product/${product.product_id}`)}
+            style={{ cursor: 'pointer' }}
+        >
             <div className="product-image-container">
                 <img 
                     src={product.image_url} 
