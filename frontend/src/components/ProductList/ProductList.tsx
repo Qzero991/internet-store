@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ProductCard, { type Product } from '../../../components/Products/ProductCard';
+import ProductCard, { type Product } from '../Products/ProductCard';
 import './ProductList.css';
 
 const ProductList: React.FC = () => {
@@ -31,7 +31,6 @@ const ProductList: React.FC = () => {
 
     const handleAddToCart = (product: Product) => {
         console.log('Added to cart:', product);
-        // Implement cart logic later
     };
 
     if (loading) return <div className="product-list-loading">Loading products...</div>;

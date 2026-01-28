@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Trash2, Plus, Minus } from 'lucide-react';
-import ProductList from '../home/ProductList/ProductList';
+import ProductList from '../../components/ProductList/ProductList';
 import './Cart.css';
-import './CartOverrides.css';
 
 // Mock Cart Item Interface
 interface CartItem {

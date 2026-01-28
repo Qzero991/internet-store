@@ -3,8 +3,10 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Hero from './pages/home/Hero/Hero';
 import CategoryList from './pages/home/Category_List/CategoryList';
-import ProductList from './pages/home/ProductList/ProductList';
+import ProductList from './components/ProductList/ProductList';
 import Cart from './pages/cart/Cart';
+import LoginPage from './pages/login/LoginPage';
+import SignUp from './pages/signup/SignUp';
 import './App.css';
 
 function App() {
@@ -24,7 +26,8 @@ function App() {
               </>
             } />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/login" element={<div style={{ padding: '2rem' }}><h1>Login</h1></div>} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUp />} />
             {/* Add other routes here */}
           </Routes>
         </main>
