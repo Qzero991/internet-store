@@ -34,7 +34,7 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/profile" element={<Profile />} />
-            {/* Add other routes here */}
+            {}
           </Routes>
         </main>
         <Footer />

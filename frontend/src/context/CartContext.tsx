@@ -57,7 +57,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         }
     };
 
-    // Fetch cart on mount or when auth changes
+    
     useEffect(() => {
         fetchCart();
     }, [token]);
@@ -69,10 +69,10 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         }
 
         try {
-            // Optimistic update or simple fetch?
-            // Let's do fetch for consistency with backend logic (checking existence etc)
             
-            // Note: Backend might update existing item or create new one.
+            
+            
+            
             const response = await fetch('/api/cartItems', {
                 method: 'POST',
                 headers: {
@@ -86,7 +86,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             });
 
             if (response.ok) {
-                // Refresh cart to show updated state and IDs
+                
                 fetchCart();
             } else {
                 console.error('Failed to add to cart');
@@ -129,7 +129,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             });
 
             if (response.ok) {
-                // Update local state
+                
                 setCartItems(prev => prev.map(item => 
                     item.cart_item_id === cartItemId 
                         ? { ...item, quantity } 

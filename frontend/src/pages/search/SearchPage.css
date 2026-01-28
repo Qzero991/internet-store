@@ -37,7 +37,7 @@
     color: #444;
 }
 
-/* Category Checkboxes */
+
 .category-filter-item {
     display: flex;
     align-items: center;
@@ -57,7 +57,7 @@
     font-size: 0.95rem;
 }
 
-/* Price Inputs */
+
 .price-inputs {
     display: flex;
     align-items: center;
@@ -81,7 +81,7 @@
     color: #999;
 }
 
-/* Clear Filters Button */
+
 .clear-filters-btn {
     width: 100%;
     padding: 0.75rem;
@@ -99,7 +99,7 @@
     color: #ff6b00;
 }
 
-/* Results Section */
+
 .search-results-container {
     flex: 1;
 }
@@ -136,7 +136,7 @@
     border-radius: 8px;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
     .search-page {
         flex-direction: column;

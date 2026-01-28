@@ -9,16 +9,16 @@ const handleControllerError = require('../utils/handleError')
 
 module.exports = {
 
-  // =========================
-  // 🔹 СОЗДАНИЕ ЗАКАЗА
-  // =========================
+  
+  
+  
   async createOrder(req, res) {
     const userId = req.user.sub;
 
     const transaction = await sequelize.transaction();
 
     try {
-      // 1. Получаем корзину
+      
       const cartItems = await CartItem.findAll({
         where: { user_id: userId },
         include: Product,
@@ -30,21 +30,21 @@ module.exports = {
         return res.status(400).json({ error: 'Cart is empty' });
       }
 
-      // 2. Считаем итоговую цену
+      
       let total_price = 0;
 
       cartItems.forEach(item => {
         total_price += item.quantity * item.Product.price;
       });
 
-      // 3. Создаём заказ
+      
       const order = await Order.create({
         user_id: userId,
         status: 'pending',
         total_price
       }, { transaction });
 
-      // 4. Создаём OrderProduct
+      
       const orderProducts = cartItems.map(item => ({
         order_id: order.order_id,
         product_id: item.product_id,
@@ -54,7 +54,7 @@ module.exports = {
 
       await OrderProduct.bulkCreate(orderProducts, { transaction });
 
-      // 5. Очищаем корзину
+      
       await CartItem.destroy({
         where: { user_id: userId },
         transaction
@@ -73,9 +73,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 МОИ ЗАКАЗЫ
-  // =========================
+  
+  
+  
   async getMyOrders(req, res) {
     try {
       const userId = req.user.sub;
@@ -92,9 +92,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 ЗАКАЗ ПО ID
-  // =========================
+  
+  
+  
   async getOrderById(req, res) {
     try {
       const userId = req.user.sub;
@@ -121,9 +121,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 ОБНОВЛЕНИЕ СТАТУСА (АДМИН)
-  // =========================
+  
+  
+  
   async updateOrderStatus(req, res) {
     try {
       const { order_id } = req.params;

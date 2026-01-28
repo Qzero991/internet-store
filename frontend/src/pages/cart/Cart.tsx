@@ -25,7 +25,7 @@ const Cart: React.FC = () => {
          }
     };
 
-    const shipping = 0; // Free shipping for now
+    const shipping = 0; 
     const total = cartTotal + shipping;
 
     const formatPrice = (price: number) => {

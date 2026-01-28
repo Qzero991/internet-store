@@ -10,7 +10,7 @@
     color: white;
 }
 
-/* Dark gradient overlay to make text readable on the left */
+
 .hero-section::before {
     content: '';
     position: absolute;
@@ -63,7 +63,7 @@
     box-shadow: 0 6px 20px rgba(255, 102, 0, 0.4);
 }
 
-/* Responsive Styles */
+
 @media (max-width: 768px) {
     .hero-section {
         height: 70vh;

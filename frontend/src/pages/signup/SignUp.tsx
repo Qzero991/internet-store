@@ -5,7 +5,7 @@ import './SignUp.css';
 const SignUp: React.FC = () => {
     const navigate = useNavigate();
     
-    // Using fields consistent with backend/src/controllers/user.controller.js
+    
     const [formData, setFormData] = useState({
         first_name: '',
         last_name: '',
@@ -103,7 +103,7 @@ const SignUp: React.FC = () => {
         setErrors(prev => ({ ...prev, general: '' }));
 
         try {
-            // Exclude confirmPassword before sending to API
+            
             const {...apiData } = formData;
             
             const response = await fetch('/api/users/register', {
@@ -122,7 +122,7 @@ const SignUp: React.FC = () => {
 
             console.log('Registration successful:', data);
             
-            // Redirect to login page after successful registration
+            
             navigate('/login');
             
         } catch (error) {

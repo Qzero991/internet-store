@@ -2,9 +2,9 @@ const { PaymentMethod } = require('../db/initTables');
 const handleControllerError = require('../utils/handleError')
 module.exports = {
 
-  // =========================
-  // 🔹 МОИ СПОСОБЫ ОПЛАТЫ
-  // =========================
+  
+  
+  
   async getMyPaymentMethods(req, res) {
     try {
       const userId = req.user.sub;
@@ -23,9 +23,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 ДОБАВИТЬ КАРТУ
-  // =========================
+  
+  
+  
   async addPaymentMethod(req, res) {
     try {
       const userId = req.user.sub;
@@ -54,9 +54,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 УДАЛИТЬ КАРТУ
-  // =========================
+  
+  
+  
   async deletePaymentMethod(req, res) {
     try {
       const userId = req.user.sub;

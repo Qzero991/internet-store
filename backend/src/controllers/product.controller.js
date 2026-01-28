@@ -3,9 +3,9 @@ const handleControllerError = require('../utils/handleError')
 
 module.exports = {
 
-  // =========================
-  // 🔹 ПОЛУЧИТЬ ВСЕ ТОВАРЫ
-  // =========================
+  
+  
+  
   async getAll(req, res) {
     try {
       const products = await Product.findAll({
@@ -17,9 +17,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 ПОЛУЧИТЬ ОДИН ТОВАР
-  // =========================
+  
+  
+  
   async getOne(req, res) {
     try {
       const productId = Number(req.params.id);
@@ -41,9 +41,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 СОЗДАНИЕ ТОВАРА
-  // =========================
+  
+  
+  
   async create(req, res) {
     try {
       if (!req.body || Object.keys(req.body).length === 0) {
@@ -60,7 +60,7 @@ module.exports = {
         image_url
       } = req.body;
 
-      // Обязательные поля
+      
       if (!name || !price || !category_id) {
         return res.status(400).json({
           error: 'Missing required fields: name, price, category_id'
@@ -88,9 +88,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 ОБНОВЛЕНИЕ ТОВАРА
-  // =========================
+  
+  
+  
   async update(req, res) {
     try {
       const productId = Number(req.params.id);
@@ -138,9 +138,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 УДАЛЕНИЕ ТОВАРА
-  // =========================
+  
+  
+  
   async delete(req, res) {
     try {
       const productId = Number(req.params.id);

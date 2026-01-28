@@ -37,7 +37,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         localStorage.setItem('user', JSON.stringify(userData));
     };
 
-    // Refresh user data on mount/token change
+    
     useEffect(() => {
         if (token) {
             fetch('/api/users/me', {
@@ -64,7 +64,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setUser(null);
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        // Optional: clear cart if needed
+        
     };
 
     return (

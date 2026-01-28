@@ -1,6 +1,6 @@
 const { ValidationError } = require('sequelize');
 
-// Универсальный обработчик ошибок
+
 const handleControllerError = (req, res, err, context) => {
   if (
     (req.method === 'POST' || req.method === 'PUT') &&

@@ -10,21 +10,21 @@ interface Category {
 }
 
 const SearchPage: React.FC = () => {
-    // URL Params
+    
     const [searchParams, setSearchParams] = useSearchParams();
     const queryParam = searchParams.get('q') || '';
     const categoryParam = searchParams.get('category') || '';
 
-    // Data State
+    
     const [allProducts, setAllProducts] = useState<Product[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    // Cart
+    
     const { addToCart } = useCart();
 
-    // Filter State
+    
     const [selectedCategories, setSelectedCategories] = useState<string[]>(
         categoryParam ? [categoryParam] : []
     );
@@ -32,11 +32,11 @@ const SearchPage: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState(queryParam);
 
 
-    // Fetch Data
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Parallel fetch
+                
                 const [productsRes, categoriesRes] = await Promise.all([
                     fetch('/api/products'),
                     fetch('/api/categories')
@@ -52,10 +52,10 @@ const SearchPage: React.FC = () => {
                 setAllProducts(productsData);
                 setCategories(categoriesData);
 
-                // Update selected category if coming from URL fresh
+                
                 if (categoryParam) {
-                    // Normalize checking: Find exact name match or case-insensitive?
-                    // Let's assume exact match for now from the text content of cards
+                    
+                    
                     setSelectedCategories([categoryParam]);
                 }
 
@@ -68,9 +68,9 @@ const SearchPage: React.FC = () => {
         };
 
         fetchData();
-    }, []); // Run once on mount
+    }, []); 
 
-    // Update local state if URL params change (e.g. searching from header)
+    
     useEffect(() => {
         setSearchQuery(queryParam);
         if (categoryParam) {
@@ -79,27 +79,29 @@ const SearchPage: React.FC = () => {
     }, [queryParam, categoryParam]);
 
 
-    // Filter Logic
+    
     const filteredProducts = useMemo(() => {
         return allProducts.filter(product => {
-            // 1. Search Query
-            const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                                  product.description.toLowerCase().includes(searchQuery.toLowerCase());
+            
+            const query = searchQuery.toLowerCase();
+            const matchesSearch = product.name.toLowerCase().includes(query) ||
+                                  (product.short_description && product.short_description.toLowerCase().includes(query)) ||
+                                  (product.long_description && product.long_description.toLowerCase().includes(query));
 
-            // 2. Categories
-            // Assuming we map category names to IDs or the product has category names attached.
-            // Backend products usually have `category_id`. We need to match it with `categories` list.
+            
+            
+            
             let matchesCategory = true;
             if (selectedCategories.length > 0) {
                 const productCategory = categories.find(c => c.category_id === product.category_id);
                 if (productCategory) {
                     matchesCategory = selectedCategories.includes(productCategory.name);
                 } else {
-                    matchesCategory = false; // No category? Don't show if categories selected
+                    matchesCategory = false; 
                 }
             }
 
-            // 3. Price
+            
             const price = Number(product.price);
             const min = priceRange.min ? Number(priceRange.min) : 0;
             const max = priceRange.max ? Number(priceRange.max) : Infinity;
@@ -109,7 +111,7 @@ const SearchPage: React.FC = () => {
         });
     }, [allProducts, searchQuery, selectedCategories, priceRange, categories]);
 
-    // Handlers
+    
     const handleCategoryChange = (categoryName: string) => {
         setSelectedCategories(prev => 
             prev.includes(categoryName)

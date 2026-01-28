@@ -5,7 +5,7 @@ import heroImage from '../../../assets/climbin_man.png';
 const Hero: React.FC = () => {
     
     const handleScrollToProducts = () => {
-        // Scroll to categories section
+        
         const categoriesSection = document.getElementById('categories');
         if (categoriesSection) {
             categoriesSection.scrollIntoView({ behavior: 'smooth' });

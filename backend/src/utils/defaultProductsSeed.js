@@ -1,5 +1,5 @@
 module.exports = [
-  // ================= CLOTHES =================
+  
   {
     name: 'Bouldering Pants Alpha',
     short_description: 'Flexible climbing pants for bouldering.',
@@ -46,7 +46,7 @@ module.exports = [
     image_url: '/pictures/products/thermal_base_layer.png'
   },
 
-  // ================= ACCESSORIES =================
+  
   {
     name: 'Chalk Bag Classic',
     short_description: 'Classic chalk bag.',
@@ -93,7 +93,7 @@ module.exports = [
     image_url: '/pictures/products/tape_roll.png'
   },
 
-  // ================= EQUIPMENT =================
+  
   {
     name: 'Dynamic Rope 30m',
     short_description: 'Dynamic climbing rope.',
@@ -140,7 +140,7 @@ module.exports = [
     image_url: '/pictures/products/liquid_chalk.png'
   },
 
-  // ===== extra items to reach 30 =====
+  
   {
     name: 'Climbing Shoes Scarpa',
     short_description: 'Aggressive climbing shoes.',
@@ -177,7 +177,7 @@ module.exports = [
     category: 'Equipment',
     image_url: '/pictures/products/climbing_helmet.png'
   },
-  // ===== MORE CLOTHES =====
+  
 {
   name: 'Climbing Jacket Windy',
   short_description: 'Light windproof jacket.',
@@ -206,7 +206,7 @@ module.exports = [
   image_url: '/pictures/products/climbing_socks_pro.png'
 },
 
-// ===== MORE ACCESSORIES =====
+
 {
   name: 'Chalk Bucket Boulder Max',
   short_description: 'Large chalk bucket.',
@@ -244,7 +244,7 @@ module.exports = [
   image_url: '/pictures/products/belay_glasses_view.png'
 },
 
-// ===== MORE EQUIPMENT =====
+
 {
   name: 'Harness Comfort Fit',
   short_description: 'Comfortable climbing harness.',
