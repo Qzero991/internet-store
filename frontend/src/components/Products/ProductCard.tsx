@@ -34,22 +34,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
                         (e.target as HTMLImageElement).src = 'https://via.placeholder.com/200?text=No+Image';
                     }}
                 />
+                <button 
+                    className="add-to-cart-btn"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onAddToCart(product);
+                    }}
+                >
+                    <ShoppingCart size={18} />
+                    Add to Cart
+                </button>
             </div>
             <div className="product-info">
                 <h3 className="product-name">{product.name}</h3>
                 <p className="product-description">{product.description}</p>
                 <div className="product-price">{formattedPrice}</div>
             </div>
-            <button 
-                className="add-to-cart-btn"
-                onClick={(e) => {
-                    e.stopPropagation();
-                    onAddToCart(product);
-                }}
-            >
-                <ShoppingCart size={18} />
-                Add to Cart
-            </button>
         </div>
     );
 };

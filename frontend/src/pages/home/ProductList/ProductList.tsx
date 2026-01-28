@@ -42,7 +42,7 @@ const ProductList: React.FC = () => {
             <div className="product-list-header">
                 <div className="product-list-titles">
                     <h2 className="product-list-main-title">Our popular products</h2>
-                    <p className="product-list-sub-title">Our customers' choice</p>
+                    <p className="product-list-sub-title">Our customer's choice</p>
                 </div>
                 <button 
                     className="all-products-btn"

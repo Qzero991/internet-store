@@ -1,8 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import Hero from './pages/home/Hero/Hero';
 import CategoryList from './pages/home/Category_List/CategoryList';
 import ProductList from './pages/home/ProductList/ProductList';
+import Cart from './pages/cart/Cart';
 import './App.css';
 
 function App() {
@@ -21,11 +23,12 @@ function App() {
                 </div>
               </>
             } />
-            <Route path="/cart" element={<div style={{ padding: '2rem' }}><h1>Cart</h1></div>} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<div style={{ padding: '2rem' }}><h1>Login</h1></div>} />
             {/* Add other routes here */}
           </Routes>
         </main>
+        <Footer />
       </div>
     </Router>
   );
