@@ -121,6 +121,29 @@ module.exports = {
     } catch (err) {
       return handleControllerError(req, res, err, 'DELETE_REVIEW');
     }
+  },
+
+
+    // =========================
+  // 🔹 УДАЛИТЬ ОТЗЫВ 
+  // =========================
+  async  deleteReviewByAdmin(req, res) {
+    try {
+      const { review_id } = req.params;
+
+      const deleted = await Review.destroy({
+        where: { review_id }
+      });
+
+      if (!deleted) {
+        return res.status(404).json({ error: 'Review not found' });
+      }
+
+      return res.json({ message: 'Review deleted' });
+
+    } catch (err) {
+      return handleControllerError(req, res, err, 'DELETE_REVIEW');
+    }
   }
 
 };
