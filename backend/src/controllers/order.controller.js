@@ -6,18 +6,7 @@ const {
   Product,
   sequelize
 } = require('../db/initTables');
-
-// Общий обработчик ошибок
-const handleControllerError = (res, err, context) => {
-  if (err instanceof ValidationError) {
-    return res.status(400).json({
-      error: 'Validation Error',
-      details: err.errors.map(e => e.message)
-    });
-  }
-  console.error(`${context} ERROR:`, err);
-  return res.status(500).json({ error: 'Internal Server Error' });
-};
+const handleControllerError = require('../utils/handleError')
 
 module.exports = {
 
@@ -81,7 +70,7 @@ module.exports = {
 
     } catch (err) {
       await transaction.rollback();
-      return handleControllerError(res, err, 'CREATE_ORDER');
+      return handleControllerError(req, res, err, 'CREATE_ORDER');
     }
   },
 
@@ -100,7 +89,7 @@ module.exports = {
       return res.json(orders);
 
     } catch (err) {
-      return handleControllerError(res, err, 'GET_MY_ORDERS');
+      return handleControllerError(req, res, err, 'GET_MY_ORDERS');
     }
   },
 
@@ -129,7 +118,7 @@ module.exports = {
       return res.json(order);
 
     } catch (err) {
-      return handleControllerError(res, err, 'GET_ORDER_BY_ID');
+      return handleControllerError(req, res, err, 'GET_ORDER_BY_ID');
     }
   },
 
@@ -165,7 +154,7 @@ module.exports = {
       return res.json({ message: 'Order status updated' });
 
     } catch (err) {
-      return handleControllerError(res, err, 'UPDATE_ORDER_STATUS');
+      return handleControllerError(req, res, err, 'UPDATE_ORDER_STATUS');
     }
   }
 

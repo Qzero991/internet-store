@@ -1,17 +1,6 @@
 const { ValidationError } = require('sequelize');
 const { CartItem, Product } = require('../db/initTables');
-
-// Универсальный обработчик ошибок
-const handleControllerError = (res, err, context) => {
-  if (err instanceof ValidationError) {
-    return res.status(400).json({
-      error: 'Validation Error',
-      details: err.errors.map(e => e.message)
-    });
-  }
-  console.error(`${context} ERROR:`, err);
-  return res.status(500).json({ error: 'Internal Server Error' });
-};
+const handleControllerError = require('../utils/handleError')
 
 module.exports = {
 
@@ -34,7 +23,7 @@ module.exports = {
       return res.json(items);
 
     } catch (err) {
-      return handleControllerError(res, err, 'GET_CART');
+      return handleControllerError(req, res, err, 'GET_CART');
     }
   },
 
@@ -88,7 +77,7 @@ module.exports = {
       });
 
     } catch (err) {
-      return handleControllerError(res, err, 'ADD_TO_CART');
+      return handleControllerError(req, res, err, 'ADD_TO_CART');
     }
   },
 
@@ -122,7 +111,7 @@ module.exports = {
       return res.json({ message: 'Quantity updated' });
 
     } catch (err) {
-      return handleControllerError(res, err, 'UPDATE_CART_ITEM');
+      return handleControllerError(req, res, err, 'UPDATE_CART_ITEM');
     }
   },
 
@@ -166,7 +155,7 @@ module.exports = {
       return res.json({ message: 'Cart cleared' });
 
     } catch (err) {
-      return handleControllerError(res, err, 'CLEAR_CART');
+      return handleControllerError(req, res, err, 'CLEAR_CART');
     }
   }
 
