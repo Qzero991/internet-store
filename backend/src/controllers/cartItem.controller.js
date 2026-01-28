@@ -14,7 +14,7 @@ module.exports = {
         where: { user_id: userId },
         include: {
           model: Product,
-          attributes: ['product_id', 'name', 'price']
+          attributes: ['product_id', 'name', 'price', 'image_url']
         },
         order: [['added_at', 'DESC']]
       });

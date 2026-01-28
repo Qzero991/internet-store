@@ -104,7 +104,15 @@ module.exports = {
 
       return res.json({
         message: 'Login successful',
-        token
+        token,
+        user: {
+          user_id: user.user_id,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          email: user.email,
+          role: user.role,
+          phone_number: user.phone_number
+        }
       });
 
     } catch (err) {
