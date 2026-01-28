@@ -56,7 +56,7 @@ const LoginPage: React.FC = () => {
             ...prev,
             [name]: value
         }));
-        // Clear error when user types
+        
         if (errors[name as keyof typeof errors]) {
             setErrors(prev => ({
                 ...prev,
@@ -90,21 +90,21 @@ const LoginPage: React.FC = () => {
 
             console.log('Login successful:', data);
             
-            // Expected backend response: { token: "...", user: { ... } }
-            // If backend structure differs, adjust here. 
-            // Based on typical JWT flows, we expect a token.
-            // If your backend returns just token, we might need to decode it or fetch /me.
-            // For now assuming data contains token (or access_token) and user details or sub.
+            
+            
+            
+            
+            
 
-            // Adapt this based on actual API response structure
+            
             const token = data.token || data.access_token;
-            // Decode token or use returned user object if available
-            // If backend doesn't return user object, we minimally need one.
+            
+            
             const user = data.user || { email: formData.email, sub: 0 }; 
 
             login(token, user);
             
-            // Redirect to home or profile
+            
             navigate('/');
             
         } catch (error) {

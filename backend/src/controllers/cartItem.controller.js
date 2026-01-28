@@ -3,9 +3,9 @@ const handleControllerError = require('../utils/handleError')
 
 module.exports = {
 
-  // =========================
-  // 🔹 ПОЛУЧИТЬ КОРЗИНУ
-  // =========================
+  
+  
+  
   async getCart(req, res) {
     try {
       const userId = req.user.sub;
@@ -26,9 +26,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 ДОБАВИТЬ В КОРЗИНУ
-  // =========================
+  
+  
+  
   async addToCart(req, res) {
     try {
       const userId = req.user.sub;
@@ -43,13 +43,13 @@ module.exports = {
         return res.status(400).json({ error: 'Quantity must be a positive integer' });
       }
 
-      // Проверяем, существует ли товар
+      
       const product = await Product.findByPk(product_id);
       if (!product) {
         return res.status(404).json({ error: 'Product not found' });
       }
 
-      // Проверяем, есть ли уже такой товар в корзине
+      
       const existingItem = await CartItem.findOne({
         where: { user_id: userId, product_id }
       });
@@ -80,9 +80,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 ИЗМЕНИТЬ КОЛИЧЕСТВО
-  // =========================
+  
+  
+  
   async updateQuantity(req, res) {
     try {
       const userId = req.user.sub;
@@ -114,9 +114,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 УДАЛИТЬ ОДИН ТОВАР
-  // =========================
+  
+  
+  
   async removeItem(req, res) {
     try {
       const userId = req.user.sub;
@@ -140,9 +140,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 ОЧИСТИТЬ КОРЗИНУ
-  // =========================
+  
+  
+  
   async clearCart(req, res) {
     try {
       const userId = req.user.sub;

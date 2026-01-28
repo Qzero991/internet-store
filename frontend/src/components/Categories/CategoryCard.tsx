@@ -15,7 +15,7 @@ interface CategoryCardProps {
 }
 
 const CategoryCard: React.FC<CategoryCardProps> = ({ category, index, onClick }) => {
-  // Helper to get a deterministic color/style or use image if available
+  
   const getBackgroundStyle = (idx: number, imageUrl?: string) => {
     if (imageUrl) {
       return {
@@ -25,7 +25,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, index, onClick })
       };
     }
     
-    // Fallback gradient
+    
     const hues = [30, 210, 150, 45, 280];
     const hue = hues[idx % hues.length];
     return {

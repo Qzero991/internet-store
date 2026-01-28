@@ -27,7 +27,7 @@
   overflow: hidden;
   background-color: #f9f9f9;
   border-radius: 4px;
-  position: relative; /* Context for button */
+  position: relative; 
 }
 
 .product-image {
@@ -70,11 +70,11 @@
 
 .add-to-cart-btn {
   position: absolute;
-  bottom: -100%; /* Fully hidden below image area */
+  bottom: -100%; 
   left: 0;
   width: 100%;
   padding: 0.8rem 1rem;
-  background-color: rgba(255, 102, 0, 0.9); /* Slight transparency */
+  background-color: rgba(255, 102, 0, 0.9); 
   color: white;
   border: none;
   font-weight: 600;
@@ -95,8 +95,5 @@
   bottom: 0;
 }
 
-/* Adjust padding bottom of card to prevent content covering by button on hover if needed */
-/* Or use a wrapper for content that pushes up? 
-   Actually, absolute button covering the price might be okay, or we push up.
-   Let's try covering the bottom area or sliding up.
-*/
+
+

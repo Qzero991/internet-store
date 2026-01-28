@@ -33,17 +33,17 @@
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  background-color: #2a2a2a; /* Default dark background */
+  background-color: #2a2a2a; 
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .category-card:hover {
-  transform: scale(1.05); /* Zoom effect */
+  transform: scale(1.05); 
 }
 
-/* Background image handling - applying a dark overlay */
+
 .category-card::before {
   content: '';
   position: absolute;
@@ -52,7 +52,7 @@
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.4);
-  /* You can add actual images via inline styles on the card itself */
+  
   z-index: 1;
   transition: background 0.3s;
 }
@@ -85,7 +85,7 @@
 }
 
 .category-card:hover .category-name {
-  color: #ff6600; /* Text becomes orange */
+  color: #ff6600; 
 }
 
 .category-description {
@@ -103,7 +103,7 @@
     transform: translateY(0);
 }
 
-/* Optional: Loading/Error states */
+
 .category-loading, .category-error {
   text-align: center;
   padding: 2rem;

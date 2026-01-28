@@ -4,9 +4,9 @@ const handleControllerError = require('../utils/handleError')
 
 module.exports = {
 
-  // =========================
-  // 🔹 ОТЗЫВЫ О ТОВАРЕ
-  // =========================
+  
+  
+  
   async getProductReviews(req, res) {
     try {
       const { product_id } = req.params;
@@ -23,9 +23,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 СОЗДАТЬ ОТЗЫВ
-  // =========================
+  
+  
+  
   async createReview(req, res) {
     try {
       const userId = req.user.sub;
@@ -37,13 +37,13 @@ module.exports = {
         });
       }
 
-      // товар существует?
+      
       const product = await Product.findByPk(product_id);
       if (!product) {
         return res.status(404).json({ error: 'Product not found' });
       }
 
-      // один отзыв на товар
+      
       const exists = await Review.findOne({
         where: { product_id, user_id: userId }
       });
@@ -71,9 +71,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 ОБНОВИТЬ ОТЗЫВ
-  // =========================
+  
+  
+  
   async updateReview(req, res) {
     try {
       const userId = req.user.sub;
@@ -100,9 +100,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 УДАЛИТЬ ОТЗЫВ
-  // =========================
+  
+  
+  
   async  deleteReview(req, res) {
     try {
       const userId = req.user.sub;
@@ -124,9 +124,9 @@ module.exports = {
   },
 
 
-    // =========================
-  // 🔹 УДАЛИТЬ ОТЗЫВ 
-  // =========================
+    
+  
+  
   async  deleteReviewByAdmin(req, res) {
     try {
       const { review_id } = req.params;

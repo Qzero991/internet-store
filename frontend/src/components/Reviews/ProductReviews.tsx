@@ -22,18 +22,18 @@ interface ProductReviewsProps {
 
 const ProductReviews: React.FC<ProductReviewsProps> = ({ productId }) => {
     const navigate = useNavigate();
-    const { isAuthenticated, token, user } = useAuth(); // Assuming 'user' is exposed in context
+    const { isAuthenticated, token, user } = useAuth(); 
     
     const [reviews, setReviews] = useState<Review[]>([]);
     const [loading, setLoading] = useState(true);
     
-    // Form State
+    
     const [rating, setRating] = useState(5);
     const [comment, setComment] = useState('');
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    // Fetch Reviews
+    
     const fetchReviews = async () => {
         try {
             const response = await fetch(`/api/reviews/product/${productId}`);
@@ -49,11 +49,21 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productId }) => {
     };
 
     const handleDelete = async (reviewId: number) => {
-        if (!token) return;
-        if (!window.confirm('Are you sure you want to delete this review?')) return;
+        console.log(token)
+        if (!token){
+             return;
+        }
 
         try {
-            const response = await fetch(`/api/reviews/${reviewId}`, {
+            
+            const isAdmin = (user as any)?.role === 'admin';
+            const endpoint = isAdmin 
+                ? `/api/reviews/admin/${reviewId}` 
+                : `/api/reviews/${reviewId}`;
+
+            console.log(`Deleting review ${reviewId} as ${isAdmin ? 'admin' : 'user'} using ${endpoint}`);
+
+            const response = await fetch(endpoint, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -102,7 +112,7 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productId }) => {
                 throw new Error(data.error || 'Failed to submit review');
             }
 
-            // Reset form and reload list
+            
             setComment('');
             setRating(5);
             await fetchReviews();
@@ -120,7 +130,7 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productId }) => {
         <div className="reviews-section">
             <h2 className="section-title">Reviews</h2>
 
-            {/* Form */}
+            {}
             <div className="review-form-container">
                 {!isAuthenticated ? (
                     <div className="login-prompt">
@@ -162,7 +172,7 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productId }) => {
                 )}
             </div>
 
-            {/* List */}
+            {}
             <div className="reviews-list">
                 {reviews.length === 0 ? (
                     <p className="no-reviews">No reviews yet. Be the first to write one!</p>
@@ -184,7 +194,17 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productId }) => {
                                     <span className="review-date">
                                         {new Date(review.timestamp).toLocaleDateString()}
                                     </span>
-                                    {isAuthenticated && user && (Number(user.user_id) === review.user_id || user.role === 'admin') && (
+                                    {isAuthenticated && user && (() => {
+                                        const userId = (user as any).user_id || user.sub;
+                                        const userRole = (user as any).role;
+                                        const isOwner = Number(userId) === Number(review.user_id);
+                                        const isAdmin = userRole === 'admin';
+                                        
+                                        
+                                        
+                                        
+                                        return isOwner || isAdmin;
+                                    })() && (
                                         <button 
                                             onClick={() => handleDelete(review.review_id)}
                                             style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#ef4444' }}

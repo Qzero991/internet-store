@@ -3,9 +3,9 @@ const handleControllerError = require('../utils/handleError')
 
 module.exports = {
 
-  // =========================
-  // 🔹 ПОЛУЧИТЬ ВСЕ КАТЕГОРИИ
-  // =========================
+  
+  
+  
   async getAll(req, res) {
     try {
       const categories = await Category.findAll();
@@ -15,9 +15,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 ПОЛУЧИТЬ ОДНУ КАТЕГОРИЮ
-  // =========================
+  
+  
+  
   async getOne(req, res) {
     try {
       const categoryId = Number(req.params.id);
@@ -36,9 +36,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 СОЗДАНИЕ КАТЕГОРИИ
-  // =========================
+  
+  
+  
   async create(req, res) {
     try {
       if (!req.body || Object.keys(req.body).length === 0) {
@@ -64,9 +64,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 ОБНОВЛЕНИЕ КАТЕГОРИИ
-  // =========================
+  
+  
+  
   async update(req, res) {
     try {
       const categoryId = Number(req.params.id);
@@ -106,9 +106,9 @@ module.exports = {
     }
   },
 
-  // =========================
-  // 🔹 УДАЛЕНИЕ КАТЕГОРИИ
-  // =========================
+  
+  
+  
   async delete(req, res) {
     try {
       const categoryId = Number(req.params.id);

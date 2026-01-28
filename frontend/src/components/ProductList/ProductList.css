@@ -44,7 +44,7 @@
     cursor: pointer;
     text-transform: uppercase;
     transition: all 0.3s ease;
-    margin-bottom: 0.5rem; /* visual alignment with text */
+    margin-bottom: 0.5rem; 
 }
 
 .all-products-btn:hover {

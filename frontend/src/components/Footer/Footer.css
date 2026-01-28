@@ -1,8 +1,8 @@
 .footer {
   background-color: #1a2530;
   color: #ffffff;
-  padding: 5rem 2rem 1.5rem; /* Increased top padding */
-  margin-top: 5rem; /* Ensure spacing from content above */
+  padding: 5rem 2rem 1.5rem; 
+  margin-top: 5rem; 
   width: 100%;
 }
 
@@ -18,7 +18,7 @@
 .footer-section h3 {
   font-size: 1.2rem;
   margin-bottom: 1.2rem;
-  color: #ff6600; /* Orange accent matching the theme */
+  color: #ff6600; 
   text-transform: uppercase;
   letter-spacing: 1px;
 }
