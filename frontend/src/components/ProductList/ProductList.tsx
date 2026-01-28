@@ -55,7 +55,7 @@ const ProductList: React.FC = () => {
             
             <div className="product-list">
                 {Array.isArray(products) && products.length > 0 ? (
-                    products.map((product) => (
+                    products.filter((_, index) => index < 6).map((product) => (
                         <ProductCard 
                             key={product.product_id} 
                             product={product} 
