@@ -6,18 +6,7 @@ const { User } = require('../db/initTables');
 
 const SALT_ROUNDS = 10;
 const emailRegex = /\S+@\S+\.\S+/;
-
-// Вспомогательная функция для обработки ошибок
-const handleControllerError = (res, err, context) => {
-  if (err instanceof ValidationError) {
-    return res.status(400).json({
-      error: 'Validation Error',
-      details: err.errors.map(e => e.message)
-    });
-  }
-  console.error(`${context} ERROR:`, err);
-  return res.status(500).json({ error: 'Internal Server Error' });
-};
+const handleControllerError = require('../utils/handleError')
 
 module.exports = {
 
@@ -83,7 +72,7 @@ module.exports = {
       });
 
     } catch (err) {
-      return handleControllerError(res, err, 'REGISTER');
+      return handleControllerError(req, res, err, 'REGISTER');
     }
   },
 
@@ -121,7 +110,7 @@ module.exports = {
       });
 
     } catch (err) {
-      return handleControllerError(res, err, 'LOGIN');
+      return handleControllerError(req, res, err, 'LOGIN');
     }
   },
 
@@ -143,7 +132,7 @@ module.exports = {
       return res.json(user);
 
     } catch (err) {
-      return handleControllerError(res, err, 'GET_ME');
+      return handleControllerError(req, res, err, 'GET_ME');
     }
   },
 
@@ -189,7 +178,7 @@ module.exports = {
       return res.json({ message: 'Profile updated successfully' });
 
     } catch (err) {
-      return handleControllerError(res, err, 'UPDATE_ME');
+      return handleControllerError(req, res, err, 'UPDATE_ME');
     }
   }
 };
