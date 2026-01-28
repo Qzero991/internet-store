@@ -30,8 +30,9 @@ async function createDefaults() {
                 image_url: `${process.env.BACKEND_SERVER_URL}/pictures/categories/clothes.png`
             }
         });
-        if (clothes && clothes.image_url && clothes.image_url.includes('undefined')) {
-             clothes.image_url = `${process.env.BACKEND_SERVER_URL}/pictures/clothes.png`;
+        // Fix for undefined or wrong path
+        if (clothes && (clothes.image_url.includes('undefined') || !clothes.image_url.includes('/categories/'))) {
+             clothes.image_url = `${process.env.BACKEND_SERVER_URL}/pictures/categories/clothes.png`;
              await clothes.save();
         }
 
@@ -42,8 +43,8 @@ async function createDefaults() {
                 image_url: `${process.env.BACKEND_SERVER_URL}/pictures/categories/equipment.png`
             }
         });
-        if (accessories && accessories.image_url && accessories.image_url.includes('undefined')) {
-             accessories.image_url = `${process.env.BACKEND_SERVER_URL}/pictures/equipment.png`;
+        if (accessories && (accessories.image_url.includes('undefined') || !accessories.image_url.includes('/categories/'))) {
+             accessories.image_url = `${process.env.BACKEND_SERVER_URL}/pictures/categories/equipment.png`;
              await accessories.save();
         }
 
@@ -54,8 +55,8 @@ async function createDefaults() {
                 image_url: `${process.env.BACKEND_SERVER_URL}/pictures/categories/accessories.png`
             }
         });
-        if (equipment && equipment.image_url && equipment.image_url.includes('undefined')) {
-             equipment.image_url = `${process.env.BACKEND_SERVER_URL}/pictures/accessories.png`;
+        if (equipment && (equipment.image_url.includes('undefined') || !equipment.image_url.includes('/categories/'))) {
+             equipment.image_url = `${process.env.BACKEND_SERVER_URL}/pictures/categories/accessories.png`;
              await equipment.save();
         }
 

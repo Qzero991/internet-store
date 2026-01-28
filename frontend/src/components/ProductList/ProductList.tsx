@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductCard, { type Product } from '../Products/ProductCard';
+import { useCart } from '../../context/CartContext';
 import './ProductList.css';
 
 const ProductList: React.FC = () => {
@@ -8,6 +9,7 @@ const ProductList: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
+    const { addToCart } = useCart();
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -29,8 +31,8 @@ const ProductList: React.FC = () => {
         fetchProducts();
     }, []);
 
-    const handleAddToCart = (product: Product) => {
-        console.log('Added to cart:', product);
+    const handleAddToCart = async (product: Product) => {
+        await addToCart(product);
     };
 
     if (loading) return <div className="product-list-loading">Loading products...</div>;

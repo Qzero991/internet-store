@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search, ShoppingCart, User, X } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { useCart } from '../../context/CartContext';
 import './Header.css';
 
 const Header: React.FC = () => {
@@ -10,6 +11,7 @@ const Header: React.FC = () => {
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
+  const { cartCount } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,7 +67,10 @@ const Header: React.FC = () => {
 
       <div className={`header-right ${isMobileSearchOpen ? 'hidden' : ''}`}>
         <Link to="/cart" className="icon-button" aria-label="Cart">
-          <ShoppingCart size={24} />
+           <div style={{ position: 'relative' }}>
+             <ShoppingCart size={24} />
+             {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+           </div>
         </Link>
         <Link to={isAuthenticated ? "/profile" : "/login"} className="icon-button" aria-label="Profile">
           <User size={24} />

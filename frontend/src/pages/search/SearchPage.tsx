@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ProductCard, { type Product } from '../../components/Products/ProductCard';
+import { useCart } from '../../context/CartContext';
 import './SearchPage.css';
 
 interface Category {
@@ -19,6 +20,9 @@ const SearchPage: React.FC = () => {
     const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
+    // Cart
+    const { addToCart } = useCart();
 
     // Filter State
     const [selectedCategories, setSelectedCategories] = useState<string[]>(
@@ -126,8 +130,8 @@ const SearchPage: React.FC = () => {
         setSearchParams({});
     };
 
-    const handleAddToCart = (product: Product) => {
-        // Optional: show toast notification
+    const handleAddToCart = async (product: Product) => {
+        await addToCart(product);
     };
 
     if (loading) return <div style={{ padding: '4rem', textAlign: 'center' }}>Loading...</div>;
