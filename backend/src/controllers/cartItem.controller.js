@@ -1,4 +1,3 @@
-const { ValidationError } = require('sequelize');
 const { CartItem, Product } = require('../db/initTables');
 const handleControllerError = require('../utils/handleError')
 

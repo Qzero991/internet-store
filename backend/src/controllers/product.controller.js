@@ -1,4 +1,3 @@
-const { ValidationError } = require('sequelize');
 const { Product, Category } = require('../db/initTables');
 const handleControllerError = require('../utils/handleError')
 
@@ -53,7 +52,8 @@ module.exports = {
 
       const {
         name,
-        description,
+        short_description,
+        long_description,
         price,
         stock_quantity,
         category_id,
@@ -73,7 +73,8 @@ module.exports = {
 
       const product = await Product.create({
         name: name.trim(),
-        description: description || null,
+        short_description: short_description || null,
+        long_description: long_description || null,
         price,
         stock_quantity: stock_quantity ?? 0,
         category_id,
@@ -103,7 +104,8 @@ module.exports = {
 
       const allowedFields = [
         'name',
-        'description',
+        'short_description',
+        'long_description',
         'price',
         'stock_quantity',
         'category_id',

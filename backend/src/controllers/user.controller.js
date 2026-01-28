@@ -1,7 +1,5 @@
-
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { ValidationError } = require('sequelize');
 const { User } = require('../db/initTables');
 
 const SALT_ROUNDS = 10;
