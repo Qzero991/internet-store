@@ -6,7 +6,9 @@ import './ProductCard.css';
 export interface Product {
     product_id: number;
     name: string;
-    description: string;
+    description?: string;
+    short_description: string;
+    long_description: string;
     price: string | number;
     image_url: string;
     stock_quantity: number;
@@ -53,7 +55,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
             </div>
             <div className="product-info">
                 <h3 className="product-name">{product.name}</h3>
-                <p className="product-description">{product.description}</p>
+                <p className="product-description" title={product.short_description}>{product.short_description}</p>
                 <div className="product-price">{formattedPrice}</div>
             </div>
         </div>

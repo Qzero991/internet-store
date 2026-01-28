@@ -8,7 +8,9 @@ import './ProductPage.css';
 interface Product {
     product_id: number;
     name: string;
-    description: string;
+    description?: string;
+    short_description: string;
+    long_description: string;
     price: string | number;
     image_url: string;
     stock_quantity: number;
@@ -163,7 +165,7 @@ const ProductPage: React.FC = () => {
 
                     <div className="product-description-container">
                         <div className="description-label">Description</div>
-                        <p className="product-description-text">{product.description}</p>
+                        <p className="product-description-text">{product.long_description || product.description}</p>
                     </div>
 
                     <div className="add-to-cart-section">
